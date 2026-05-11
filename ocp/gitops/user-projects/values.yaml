@@ -1,2 +1,5 @@
-repoURL: https://github.com/hfenner/ansibleforge.git
+users:
+  - bgregori
+
+repoURL: https://github.com/bgregori/ansibleforge.git
 targetRevision: main
