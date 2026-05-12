@@ -22,10 +22,10 @@ spec:
             - |
               set -eu
 
-              KEYCLOAK_URL="https://keycloak.{{ .Values.clusterDomain }}"
+              KEYCLOAK_URL="https://keycloak.{{ .Values.deployer.domain }}"
               REALM="sso"
               CLIENT_ID="site"
-              REDIRECT_URI="https://site.{{ .Values.clusterDomain }}/oauth2/callback"
+              REDIRECT_URI="https://site.{{ .Values.deployer.domain }}/oauth2/callback"
               CLIENT_SECRET=$(cat /secrets/oauth2-proxy/client-secret)
 
               # Get admin token
@@ -55,7 +55,7 @@ spec:
                 "directAccessGrantsEnabled": false,
                 "secret": "${CLIENT_SECRET}",
                 "redirectUris": ["${REDIRECT_URI}"],
-                "webOrigins": ["https://site.{{ .Values.clusterDomain }}"],
+                "webOrigins": ["https://site.{{ .Values.deployer.domain }}"],
                 "defaultClientScopes": ["profile", "email", "roles", "web-origins"],
                 "optionalClientScopes": ["groups"],
                 "protocolMappers": [{

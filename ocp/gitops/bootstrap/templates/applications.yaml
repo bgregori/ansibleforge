@@ -35,23 +35,23 @@ spec:
         {{- end }}
         {{- end }}
         parameters:
-          {{- if $.Values.clusterDomain }}
+          {{- if $.Values.deployer.domain }}
           - name: clusterDomain
-            value: {{ $.Values.clusterDomain | quote }}
+            value: {{ $.Values.deployer.domain | quote }}
           {{- end }}
           {{- if $.Values.clusterName }}
           - name: clusterName
             value: {{ $.Values.clusterName | quote }}
           {{- end }}
-          {{- if and .injectClusterRouterBase $.Values.clusterDomain }}
+          {{- if and .injectClusterRouterBase $.Values.deployer.domain }}
           - name: global.clusterRouterBase
-            value: {{ $.Values.clusterDomain | quote }}
+            value: {{ $.Values.deployer.domain | quote }}
           {{- end }}
-          {{- if and .injectKeycloakUrl $.Values.clusterDomain }}
+          {{- if and .injectKeycloakUrl $.Values.deployer.domain }}
           - name: upstream.backstage.extraEnvVars[0].name
             value: KEYCLOAK_METADATA_URL
           - name: upstream.backstage.extraEnvVars[0].value
-            value: {{ printf "https://keycloak.%s/realms/sso/.well-known/openid-configuration" $.Values.clusterDomain | quote }}
+            value: {{ printf "https://keycloak.%s/realms/sso/.well-known/openid-configuration" $.Values.deployer.domain | quote }}
           - name: upstream.backstage.extraEnvVars[1].name
             value: POSTGRESQL_ADMIN_PASSWORD
           - name: upstream.backstage.extraEnvVars[1].valueFrom.secretKeyRef.name
@@ -67,11 +67,11 @@ spec:
           - name: upstream.backstage.extraEnvVars[3].name
             value: KEYCLOAK_BASE_URL
           - name: upstream.backstage.extraEnvVars[3].value
-            value: {{ printf "https://keycloak.%s" $.Values.clusterDomain | quote }}
+            value: {{ printf "https://keycloak.%s" $.Values.deployer.domain | quote }}
           - name: upstream.backstage.extraEnvVars[4].name
             value: AAP_BASE_URL
           - name: upstream.backstage.extraEnvVars[4].value
-            value: {{ printf "https://aap-aap.%s" $.Values.clusterDomain | quote }}
+            value: {{ printf "https://aap-aap.%s" $.Values.deployer.domain | quote }}
           {{- end }}
           {{- with .helm }}
           {{- range .parameters }}
@@ -86,7 +86,7 @@ spec:
     repoURL: {{ $.Values.repoURL }}
     targetRevision: {{ $.Values.targetRevision }}
     path: {{ $app.path }}
-    {{- if or $app.helm $.Values.clusterDomain $.Values.clusterName }}
+    {{- if or $app.helm $.Values.deployer.domain $.Values.clusterName }}
     helm:
       {{- with $app.helm }}
       {{- if .valueFiles }}
@@ -95,9 +95,9 @@ spec:
       {{- end }}
       {{- end }}
       parameters:
-        {{- if $.Values.clusterDomain }}
+        {{- if $.Values.deployer.domain }}
         - name: clusterDomain
-          value: {{ $.Values.clusterDomain | quote }}
+          value: {{ $.Values.deployer.domain | quote }}
         {{- end }}
         {{- if $.Values.clusterName }}
         - name: clusterName

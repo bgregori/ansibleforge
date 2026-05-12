@@ -5,7 +5,7 @@ metadata:
 spec:
   location: ApplicationMenu
   text: Developer Hub
-  href: https://rhdh-developer-hub-rhdh.{{ .Values.clusterDomain }}
+  href: https://rhdh-developer-hub-rhdh.{{ .Values.deployer.domain }}
   applicationMenu:
     section: Red Hat Applications
-    imageURL: https://rhdh-developer-hub-rhdh.{{ .Values.clusterDomain }}/favicon.ico
+    imageURL: https://rhdh-developer-hub-rhdh.{{ .Values.deployer.domain }}/favicon.ico

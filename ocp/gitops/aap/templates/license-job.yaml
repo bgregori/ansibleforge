@@ -16,7 +16,7 @@ spec:
         image: registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9:latest
         env:
         - name: CONTROLLER_HOST
-          value: "https://aap-aap.{{ .Values.clusterDomain }}"
+          value: "https://aap-aap.{{ .Values.deployer.domain }}"
         - name: CONTROLLER_USERNAME
           value: admin
         - name: CONTROLLER_PASSWORD

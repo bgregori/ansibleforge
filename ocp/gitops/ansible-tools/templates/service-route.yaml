@@ -21,7 +21,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  host: ansible-tools.{{ .Values.clusterDomain }}
+  host: ansible-tools.{{ .Values.deployer.domain }}
   to:
     kind: Service
     name: ansible-tools

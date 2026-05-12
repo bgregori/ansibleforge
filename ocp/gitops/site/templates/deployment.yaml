@@ -22,13 +22,13 @@ spec:
             - --http-address=0.0.0.0:4180
             - --upstream=http://localhost:8080
             - --provider=oidc
-            - --oidc-issuer-url=https://keycloak.{{ .Values.clusterDomain }}/realms/sso
+            - --oidc-issuer-url=https://keycloak.{{ .Values.deployer.domain }}/realms/sso
             - --client-id=site
             - --cookie-secure=true
             - --cookie-samesite=lax
             - --email-domain=*
             - --skip-provider-button=true
-            - --redirect-url=https://site.{{ .Values.clusterDomain }}/oauth2/callback
+            - --redirect-url=https://site.{{ .Values.deployer.domain }}/oauth2/callback
             - --ssl-insecure-skip-verify=true
             - --code-challenge-method=S256
             - --skip-jwt-bearer-tokens=true

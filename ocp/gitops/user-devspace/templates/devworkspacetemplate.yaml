@@ -1,4 +1,4 @@
-{{- $clusterDomain := .Values.clusterDomain }}
+{{- $clusterDomain := .Values.deployer.domain }}
 {{- if not $clusterDomain }}
 {{- $ingressConfig := lookup "config.openshift.io/v1" "Ingress" "" "cluster" }}
 {{- if and $ingressConfig $ingressConfig.spec }}

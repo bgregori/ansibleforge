@@ -1,10 +1,10 @@
-{{- if .Values.clusterDomain }}
+{{- if .Values.deployer.domain }}
 {{- $infra := lookup "config.openshift.io/v1" "Infrastructure" "" "cluster" }}
 {{- $awsRegion := "" }}
 {{- if and $infra $infra.status $infra.status.platformStatus $infra.status.platformStatus.aws }}
 {{- $awsRegion = $infra.status.platformStatus.aws.region }}
 {{- end }}
-{{- $samlBase := printf "https://keycloak.%s/realms/sso/protocol/saml/clients/urn%%3Aamazon%%3Awebservices" .Values.clusterDomain }}
+{{- $samlBase := printf "https://keycloak.%s/realms/sso/protocol/saml/clients/urn%%3Aamazon%%3Awebservices" .Values.deployer.domain }}
 apiVersion: console.openshift.io/v1
 kind: ConsoleLink
 metadata:

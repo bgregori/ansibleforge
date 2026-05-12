@@ -21,7 +21,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  host: site.{{ .Values.clusterDomain }}
+  host: site.{{ .Values.deployer.domain }}
   to:
     kind: Service
     name: site

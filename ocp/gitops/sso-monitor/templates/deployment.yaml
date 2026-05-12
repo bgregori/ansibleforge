@@ -1,4 +1,4 @@
-{{- $clusterDomain := .Values.clusterDomain }}
+{{- $clusterDomain := .Values.deployer.domain }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

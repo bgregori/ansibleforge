@@ -4,7 +4,7 @@ Each entry: {"name": "...", "serviceUrl": "...", "validationPath": "..."}
 These are downstream services to validate tokens against after the ROPC grant.
 */}}
 {{- define "sso-monitor.servicesJson" -}}
-{{- $clusterDomain := .Values.clusterDomain -}}
+{{- $clusterDomain := .Values.deployer.domain -}}
 {{- $services := list -}}
 {{- range $name, $svc := .Values.services -}}
   {{- if $svc.enabled -}}
